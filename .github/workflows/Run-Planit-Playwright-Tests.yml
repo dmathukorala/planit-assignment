@@ -1,18 +1,19 @@
 name: Run Planit Playwright Tests
 
 on:
-  workflow_run:
-    workflows: ["Planit Playwright Tests"]
-    types:
-      - completed
+  workflow_dispatch: 
 
 jobs:
-  trigger-tests:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Planit Playwright Tests
-        uses: peter-evans/workflow-dispatch@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          repository: your-username/your-repository
-          workflow: Planit_Playwright_Tests.yml  # Replace with the actual name of your workflow file
-          ref: main  # The branch you want to trigger from
+          node-version: lts/*
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Playwright Tests
+        run: npx playwright test
