@@ -1,7 +1,7 @@
 name: Run Planit Playwright Tests
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   run-tests:
@@ -9,11 +9,17 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
+
       - name: Install Dependencies
         run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
       - name: Run Playwright Tests
         run: npx playwright test
