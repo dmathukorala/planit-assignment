@@ -54,6 +54,6 @@ export class ContactPage extends BasePage {
     }
 
     async verifySuccessMessage(expectedText: string) {
-        await expect(this.page.locator(this.successMessage)).toHaveText(expectedText), { timeout: 30000 };
+        await expect(this.page.locator(this.successMessage)).toHaveText(expectedText, { timeout: 30000 });
     }
 }
