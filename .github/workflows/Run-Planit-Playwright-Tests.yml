@@ -1,4 +1,4 @@
-name: Planit Playwright Tests
+name: Run Planit Playwright Tests
 
 on:
   workflow_run:
