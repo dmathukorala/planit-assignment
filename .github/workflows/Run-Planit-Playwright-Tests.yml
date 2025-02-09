@@ -1,0 +1,18 @@
+name: Planit Playwright Tests
+
+on:
+  workflow_run:
+    workflows: ["Planit Playwright Tests"]
+    types:
+      - completed
+
+jobs:
+  trigger-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Planit Playwright Tests
+        uses: peter-evans/workflow-dispatch@v1
+        with:
+          repository: your-username/your-repository
+          workflow: Planit_Playwright_Tests.yml  # Replace with the actual name of your workflow file
+          ref: main  # The branch you want to trigger from
